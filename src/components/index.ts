@@ -1,5 +1,7 @@
-import Counter from './Counter/Counter';
+import Header from './Header/Header';
+import AssetCard from './AssetCard/AssetCard';
 
 export {
-  Counter
+  Header,
+  AssetCard
 };

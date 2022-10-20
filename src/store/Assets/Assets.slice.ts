@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../Store';
-import { INITIAL_COUNTER } from './Counter.constants';
-import { ICounterReducers, ICounterStore } from './Counter.types';
-import { incrementAsync } from './Counter.middleware';
+import { INITIAL_COUNTER } from './Assets.constants';
+import { ICounterReducers, ICounterStore } from './Assets.types';
+import { incrementAsync } from './Assets.middleware';
 
 export const slice = createSlice<ICounterStore, ICounterReducers>({
   name: 'counter',
@@ -36,6 +36,6 @@ export const slice = createSlice<ICounterStore, ICounterReducers>({
 
 export const { increment, decrement, incrementByAmount } = slice.actions;
 
-export const selectCount = (state: RootState) => state.counter.value;
+export const selectCount = (state: RootState) => state.assets.value;
 
 export default slice.reducer;

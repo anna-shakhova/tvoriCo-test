@@ -1,0 +1,23 @@
+.root {
+  width: 20rem;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  height: 10rem;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 0.5rem;
+}
+
+.price {
+  font-size: 1rem;
+}

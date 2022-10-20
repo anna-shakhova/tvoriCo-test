@@ -1,10 +1,10 @@
 import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import counterReducer from './Counter/Counter.slice';
+import assetsReducer from './Assets/Assets.slice';
 
 const reducer = combineReducers({
-  counter: counterReducer
+  assets: assetsReducer
 });
 
 export const store = configureStore({

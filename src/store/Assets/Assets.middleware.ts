@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { fetchCount } from '../../api/Counter';
 import { AppThunk } from '../Store';
-import { incrementByAmount, selectCount } from './Counter.slice';
+import { incrementByAmount, selectCount } from './Assets.slice';
 
 export const incrementAsync = createAsyncThunk(
   'counter/fetchCount',
