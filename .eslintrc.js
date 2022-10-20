@@ -29,7 +29,7 @@ module.exports = {
       ],
       "rules": {
         '@typescript-eslint/no-unused-vars': [
-          1,
+          "error",
           {
             args: 'none',
             ignoreRestSiblings: true

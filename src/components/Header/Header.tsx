@@ -1,40 +1,58 @@
-import React, { FC, memo } from 'react';
+import React, { FC, useCallback } from 'react';
 import { AppBar, Box, Toolbar, Typography, Button, Link } from '@mui/material';
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 
 import styles from './Header.module.scss';
 import { ROUTES } from '../../constants/routes';
+import { useAppDispatch, useAppSelector } from '../../store/Store';
+import { UserRole } from '../../store/Auth/Auth.types';
+import { login, logout } from '../../store/Auth/Auth.slice';
 
-const Header: FC = () => (
-  <AppBar position="static">
-    <Toolbar>
-      <ViewInArIcon />
-      <Typography
-        className={styles.logo}
-        variant="h6"
-        noWrap
-        component="a"
-        href={ROUTES.main}
-      >
-        LOGO
-      </Typography>
+const Header: FC = () => {
+  const dispatch = useAppDispatch();
+  const { role } = useAppSelector((store) => store.auth);
 
-      <Box sx={{
-        flexGrow: 1,
-        display: 'flex'
-      }}
-      >
-        <Link className={styles.link} color="inherit" href={ROUTES.main} variant="button" underline="none">
-          PRODUCTS
-        </Link>
-        <Link className={styles.link} color="inherit" href={ROUTES.main} variant="button" underline="none">
-          AUTHOR
-        </Link>
-      </Box>
+  const isAdmin = role === UserRole.Admin;
 
-      <Button color="inherit">Login</Button>
-    </Toolbar>
-  </AppBar>
-);
+  const onLoginLogoutHandler = useCallback(() => {
+    const action = isAdmin ? logout : login;
 
-export default memo(Header);
+    dispatch(action());
+  }, [isAdmin, dispatch]);
+
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <ViewInArIcon />
+        <Typography
+          className={styles.logo}
+          variant="h6"
+          noWrap
+          component="a"
+          href={ROUTES.main}
+        >
+          LOGO
+        </Typography>
+
+        <Box sx={{
+          flexGrow: 1,
+          display: 'flex'
+        }}
+        >
+          <Link className={styles.link} color="inherit" href={ROUTES.main} variant="button" underline="none">
+            PRODUCTS
+          </Link>
+          <Link className={styles.link} color="inherit" href={ROUTES.main} variant="button" underline="none">
+            AUTHOR
+          </Link>
+        </Box>
+
+        <Button color="inherit" onClick={onLoginLogoutHandler}>
+          {isAdmin ? 'Logout' : 'Login'}
+        </Button>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default Header;

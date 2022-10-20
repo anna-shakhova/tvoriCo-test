@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { AssetCard } from '../../components';
+import { AssetCard, EditAssetDialog } from '../../components';
 import styles from './Main.module.scss';
 import { useAppSelector } from '../../store/Store';
 
@@ -12,6 +12,8 @@ const Main: FC = () => {
       <div className={styles.assets}>
         {assets.map((asset) => <AssetCard key={asset.id} asset={asset} />)}
       </div>
+
+      <EditAssetDialog />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 .root {
   width: 20rem;
+  position: relative;
 }
 
 .main {
@@ -20,4 +21,15 @@
 
 .price {
   font-size: 1rem;
+}
+
+.edit {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  background-color: #f5f5f5;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
 }

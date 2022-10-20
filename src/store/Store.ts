@@ -2,9 +2,11 @@ import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/t
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import assetsReducer from './Assets/Assets.slice';
+import authReducer from './Auth/Auth.slice';
 
 const reducer = combineReducers({
-  assets: assetsReducer
+  assets: assetsReducer,
+  auth: authReducer
 });
 
 export const store = configureStore({

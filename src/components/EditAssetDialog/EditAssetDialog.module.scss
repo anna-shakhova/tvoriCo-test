@@ -1,0 +1,29 @@
+.root {
+  width: 50rem;
+  max-width: 50rem;
+}
+
+.content {
+  display: flex;
+}
+
+.form {
+  width: 60%;
+  margin-right: 2rem;
+}
+
+.inlineInputs {
+  display: flex;
+  justify-content: space-between;
+
+  & > div {
+    width: calc(50% - 0.5rem);
+  }
+}
+
+.image {
+  width: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

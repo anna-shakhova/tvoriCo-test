@@ -8,16 +8,18 @@ export interface IAssetItem {
   url: string;
 }
 
-export type TCounterStatus = 'idle' | 'loading' | 'failed';
+export type IAssetItemNoId = Omit<IAssetItem, 'id'>;
 
 export interface ICounterStore {
   assets: IAssetItem[];
-  value: number;
-  status: TCounterStatus;
+  isEditDialogOpen: boolean;
+  assetToEdit: IAssetItem | null;
 }
 
 export interface ICounterReducers extends SliceCaseReducers<ICounterStore> {
-  increment: CaseReducer<ICounterStore>;
-  decrement: CaseReducer<ICounterStore>;
-  incrementByAmount: CaseReducer<ICounterStore, PayloadAction<number>>;
+  openEditDialog: CaseReducer<ICounterStore, PayloadAction<IAssetItem | undefined>>;
+  closeEditDialog: CaseReducer<ICounterStore>;
+  updateAsset: CaseReducer<ICounterStore, PayloadAction<IAssetItem>>;
+  deleteAsset: CaseReducer<ICounterStore, PayloadAction<string>>;
+  addAsset: CaseReducer<ICounterStore, PayloadAction<IAssetItem>>;
 }
