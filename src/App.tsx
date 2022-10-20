@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { Main, Material } from './routes';
+import { Main } from './routes';
 import styles from './App.module.scss';
 import { Header } from './components';
+import { ROUTES } from './constants/routes';
 
 const App: FC = () => (
   <BrowserRouter>
@@ -11,8 +12,7 @@ const App: FC = () => (
       <Header />
       <div className={styles.content}>
         <Switch>
-          <Route exact path="/tvoriCo-test" component={Main} />
-          <Route path="/tvoriCo-test/material" component={Material} />
+          <Route exact path={ROUTES.main} component={Main} />
         </Switch>
       </div>
     </div>
