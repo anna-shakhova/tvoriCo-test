@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tvoriCo-test/static/css/main.b06b8249.css",
-    "main.js": "/tvoriCo-test/static/js/main.1641704c.js",
+    "main.css": "/tvoriCo-test/static/css/main.94d6ad52.css",
+    "main.js": "/tvoriCo-test/static/js/main.3245195d.js",
     "index.html": "/tvoriCo-test/index.html",
-    "main.b06b8249.css.map": "/tvoriCo-test/static/css/main.b06b8249.css.map",
-    "main.1641704c.js.map": "/tvoriCo-test/static/js/main.1641704c.js.map"
+    "main.94d6ad52.css.map": "/tvoriCo-test/static/css/main.94d6ad52.css.map",
+    "main.3245195d.js.map": "/tvoriCo-test/static/js/main.3245195d.js.map"
   },
   "entrypoints": [
-    "static/css/main.b06b8249.css",
-    "static/js/main.1641704c.js"
+    "static/css/main.94d6ad52.css",
+    "static/js/main.3245195d.js"
   ]
 }
