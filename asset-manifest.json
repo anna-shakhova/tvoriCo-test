@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tvoriCo-test/static/css/main.87bc2810.css",
+    "main.js": "/tvoriCo-test/static/js/main.c51668f3.js",
+    "index.html": "/tvoriCo-test/index.html",
+    "main.87bc2810.css.map": "/tvoriCo-test/static/css/main.87bc2810.css.map",
+    "main.c51668f3.js.map": "/tvoriCo-test/static/js/main.c51668f3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.87bc2810.css",
+    "static/js/main.c51668f3.js"
+  ]
+}
