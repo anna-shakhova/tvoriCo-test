@@ -22,15 +22,18 @@ export const slice = createSlice<ICounterStore, ICounterReducers>({
       state.assetToEdit = null;
     },
     updateAsset: (state, { payload }) => {
-      state.isEditDialogOpen = false;
       state.assets = state.assets.map((asset) =>
         (asset.id === payload.id ? payload : asset));
+      state.isEditDialogOpen = false;
+      state.assetToEdit = null;
     },
     deleteAsset: (state, { payload }) => {
       state.assets = state.assets.filter(({ id }) => id !== payload);
     },
     addAsset: (state, { payload }) => {
       state.assets = [payload, ...state.assets];
+      state.isEditDialogOpen = false;
+      state.assetToEdit = null;
     }
   }
 });

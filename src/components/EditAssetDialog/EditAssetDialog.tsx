@@ -9,10 +9,11 @@ import {
   FormControl,
   InputLabel, InputAdornment, Input
 } from '@mui/material';
+import { v4 as uuid } from 'uuid';
 
 import styles from './EditAssetDialog.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
-import { closeEditDialog, updateAsset } from '../../store/Assets/Assets.slice';
+import { addAsset, closeEditDialog, updateAsset } from '../../store/Assets/Assets.slice';
 import { IAssetItemNoId } from '../../store/Assets/Assets.types';
 import { EMPTY_ASSET } from './EditAssetDialog.constants';
 
@@ -33,10 +34,11 @@ const EditAssetDialog: FC = () => {
   const onSaveHandler = useCallback(() => {
     const asset = {
       ...currentAsset,
-      id: assetToEdit?.id ?? ''
+      id: assetToEdit?.id ?? uuid()
     };
+    const action = assetToEdit ? updateAsset : addAsset;
 
-    assetToEdit && dispatch(updateAsset(asset));
+    dispatch(action(asset));
   }, [dispatch, assetToEdit, currentAsset]);
 
   useEffect(() => setCurrentAsset(assetToEdit ?? EMPTY_ASSET), [assetToEdit]);
@@ -82,6 +84,16 @@ const EditAssetDialog: FC = () => {
               />
             </FormControl>
           </div>
+
+          <TextField
+            fullWidth
+            label="Url"
+            name="url"
+            variant="standard"
+            margin="dense"
+            value={currentAsset.url}
+            onChange={onChangeAssetHandler}
+          />
 
           <TextField
             fullWidth

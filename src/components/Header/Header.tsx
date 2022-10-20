@@ -21,7 +21,7 @@ const Header: FC = () => {
   }, [isAdmin, dispatch]);
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar>
         <ViewInArIcon />
         <Typography

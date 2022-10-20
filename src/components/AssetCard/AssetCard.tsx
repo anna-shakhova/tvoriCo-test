@@ -1,20 +1,43 @@
-import React, { FC, memo, useCallback } from 'react';
-import { Card, CardContent, CardMedia, Chip, IconButton, Tooltip, Typography } from '@mui/material';
+import React, { FC, memo, useCallback, useState } from 'react';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  IconButton,
+  Tooltip,
+  Typography
+} from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import styles from './AssetCard.module.scss';
 import { AssetCardProps } from './AssetCard.types';
 import { useAppDispatch, useAppSelector } from '../../store/Store';
 import { UserRole } from '../../store/Auth/Auth.types';
-import { openEditDialog } from '../../store/Assets/Assets.slice';
+import { deleteAsset, openEditDialog } from '../../store/Assets/Assets.slice';
 
 const AssetCard: FC<AssetCardProps> = ({ asset }) => {
   const dispatch = useAppDispatch();
   const { role } = useAppSelector((store) => store.auth);
 
+  const [isDeletePrompt, setIsDeletePropmt] = useState(false);
+
   const isAdmin = role === UserRole.Admin;
 
   const onEditHandler = useCallback(() => dispatch(openEditDialog(asset)), [dispatch, asset]);
+
+  const onDeleteHandler = useCallback(() => dispatch(deleteAsset(asset.id)), [dispatch, asset]);
+
+  const onOpenPromptHandler = useCallback(() => setIsDeletePropmt(true), []);
+
+  const onClosePromptHandler = useCallback(() => setIsDeletePropmt(false), []);
 
   return (
     <Card className={styles.root}>
@@ -43,10 +66,35 @@ const AssetCard: FC<AssetCardProps> = ({ asset }) => {
       </CardContent>
 
       {isAdmin && (
-        <IconButton className={styles.edit} aria-label="edit asset description" onClick={onEditHandler}>
-          <EditIcon color="primary" />
-        </IconButton>
+        <div className={styles.actions}>
+          <IconButton aria-label="edit asset description" onClick={onEditHandler} size="small">
+            <EditIcon color="primary" fontSize="small" />
+          </IconButton>
+          <IconButton aria-label="edit asset description" onClick={onOpenPromptHandler} size="small">
+            <DeleteIcon color="primary" fontSize="small" />
+          </IconButton>
+        </div>
       )}
+
+      <Dialog
+        open={isDeletePrompt}
+        onClose={onClosePromptHandler}
+      >
+        <DialogTitle>
+          Delete Asset
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Do you want to delete {asset.title}?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onClosePromptHandler}>Cancel</Button>
+          <Button onClick={onDeleteHandler} variant="contained" color="error">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 };
